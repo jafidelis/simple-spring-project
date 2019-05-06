@@ -17,8 +17,6 @@ import br.com.edward.restfull.model.PessoaModel;
 @RequestMapping("/pessoa")
 public class PessoaController {
 
-    private static List<PessoaModel> lista = new ArrayList<>();
-
     @GetMapping("/param")
     public PessoaModel param(@RequestParam String nome) {
         return new PessoaModel(nome);
@@ -31,12 +29,6 @@ public class PessoaController {
 
     @PostMapping("/post")
     public PessoaModel post(@RequestBody PessoaModel model) {
-        lista.add(model);
         return model;
-    }
-
-    @GetMapping("/listar-todos")
-    public List<PessoaModel> listarTodos() {
-        return lista;
     }
 }

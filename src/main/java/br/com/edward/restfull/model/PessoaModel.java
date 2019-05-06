@@ -6,9 +6,6 @@ public class PessoaModel {
 
 	private ZonedDateTime dataCriacao;
 	private String nome;
-	private Integer idade;
-	private Double peso;
-	private String documento;
 
 	public PessoaModel() {
 		this.dataCriacao = ZonedDateTime.now();
