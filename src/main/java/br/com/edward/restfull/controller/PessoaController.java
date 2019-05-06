@@ -18,25 +18,25 @@ import br.com.edward.restfull.model.PessoaModel;
 public class PessoaController {
 
     private static List<PessoaModel> lista = new ArrayList<>();
-    
-	@GetMapping("/param")
+
+    @GetMapping("/param")
     public PessoaModel param(@RequestParam String nome) {
         return new PessoaModel(nome);
     }
-	
-	@GetMapping("/path/{nome}")
+
+    @GetMapping("/path/{nome}")
     public PessoaModel path(@PathVariable String nome) {
         return new PessoaModel(nome);
     }
-	
-	@PostMapping("/post")
-	public PessoaModel post(@RequestBody PessoaModel model) {
-	    lista.add(model);
-		return model;
-	}
-	
-	@GetMapping("/listar-todos")
-	public List<PessoaModel> listarTodos() {
-	    return lista;
-	}
+
+    @PostMapping("/post")
+    public PessoaModel post(@RequestBody PessoaModel model) {
+        lista.add(model);
+        return model;
+    }
+
+    @GetMapping("/listar-todos")
+    public List<PessoaModel> listarTodos() {
+        return lista;
+    }
 }
