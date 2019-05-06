@@ -23,16 +23,4 @@ public class PessoaModel {
 	public ZonedDateTime getDataCriacao() {
 		return dataCriacao;
 	}
-
-    public Integer getIdade() {
-        return idade;
-    }
-
-    public Double getPeso() {
-        return peso;
-    }
-
-    public String getDocumento() {
-        return documento;
-    }
 }
