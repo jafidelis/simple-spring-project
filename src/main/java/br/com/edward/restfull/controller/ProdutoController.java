@@ -18,26 +18,24 @@ import br.com.edward.restfull.model.ProdutoModel;
 @RequestMapping("/produto")
 public class ProdutoController {
 
-    public static List<ProdutoModel> lista = new ArrayList<>();
-
-    @PostMapping("/cadastrar")
-    public ProdutoModel cadastrar(@RequestBody ProdutoModel model) {
-        lista.add(model);
-        return model;
-    }
-    
-    @GetMapping("/mostrar-tudo")
-    public List<ProdutoModel> mostrarTudo() {
-        return lista;
-    }
-    
-    @DeleteMapping("/remover")
-    public ProdutoModel remover(@RequestParam Long id) {
-        
-        ProdutoModel produto = lista.stream().filter(item -> id.equals(item.getId())).findAny().orElse(null);
-        if (Objects.nonNull(produto)) {
-            lista.remove(produto);
-        }
-        return produto;
-    }
+//    @PostMapping("/cadastrar")
+//    public ProdutoModel cadastrar(@RequestBody ProdutoModel model) {
+//        lista.add(model);
+//        return model;
+//    }
+//    
+//    @GetMapping("/mostrar-tudo")
+//    public List<ProdutoModel> mostrarTudo() {
+//        return lista;
+//    }
+//    
+//    @DeleteMapping("/remover")
+//    public ProdutoModel remover(@RequestParam Long id) {
+//        
+//        ProdutoModel produto = lista.stream().filter(item -> id.equals(item.getId())).findAny().orElse(null);
+//        if (Objects.nonNull(produto)) {
+//            lista.remove(produto);
+//        }
+//        return produto;
+//    }
 }
