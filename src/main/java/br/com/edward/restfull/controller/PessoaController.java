@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.edward.restfull.model.FarmaceuticoModel;
+import br.com.edward.restfull.model.FornecedorModel;
 import br.com.edward.restfull.model.PessoaModel;
 
 @RestController
@@ -23,12 +25,12 @@ public class PessoaController {
     
     @GetMapping("/param")
     public PessoaModel param(@RequestParam String nome) {
-        return new PessoaModel(nome);
+        return new FarmaceuticoModel(nome);
     }
 
     @GetMapping("/path/{nome}")
     public PessoaModel path(@PathVariable String nome) {
-        return new PessoaModel(nome);
+        return new FornecedorModel(nome);
     }
 
     @PostMapping("/post")

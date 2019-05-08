@@ -2,7 +2,7 @@ package br.com.edward.restfull.model;
 
 import java.time.ZonedDateTime;
 
-public class PessoaModel {
+public abstract class PessoaModel {
     
     private static Long cont = 0L;
     
@@ -23,6 +23,8 @@ public class PessoaModel {
 		this.nome = nome;
 	}
 
+	public abstract Boolean getDocumentoValido();
+	
     public Long getId() {
         return id;
     }
