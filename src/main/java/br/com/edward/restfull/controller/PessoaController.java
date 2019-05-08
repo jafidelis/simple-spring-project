@@ -46,11 +46,9 @@ public class PessoaController {
     public PessoaModel remover(@RequestParam Long id) {
         
         PessoaModel pessoaRemover = lista.stream().filter(item -> id.equals(item.getId())).findAny().orElse(null);
-        
         if (Objects.nonNull(pessoaRemover)) {
             lista.remove(pessoaRemover);
         }
-        
         return pessoaRemover;
     }
 }
