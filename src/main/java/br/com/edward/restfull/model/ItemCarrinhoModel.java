@@ -1,5 +1,9 @@
 package br.com.edward.restfull.model;
 
+import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class ItemCarrinhoModel {
 
     private static Long cont = 0L;
@@ -26,6 +30,11 @@ public class ItemCarrinhoModel {
         return qtd;
     }
 
+    public String getNomeProduto() {
+        return Objects.nonNull(this.produto) ? this.produto.getNome() : " - ";
+    }
+    
+    @JsonIgnore
     public ProdutoModel getProduto() {
         return produto;
     }

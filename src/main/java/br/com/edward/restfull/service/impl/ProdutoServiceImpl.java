@@ -21,8 +21,13 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public ProdutoModel cadastrar(ProdutoModel model) {
-        lista.add(model);
-        return model;
+        
+        ProdutoModel produto = this.consultar(model.getId());
+        if (Objects.isNull(produto)) {
+            lista.add(model);
+            return model;
+        }
+        throw new RuntimeException("Produto já existe");
     }
 
     @Override
@@ -35,6 +40,15 @@ public class ProdutoServiceImpl implements ProdutoService {
         ProdutoModel produto = this.consultar(id);
         if (Objects.nonNull(produto)) {
             lista.remove(produto);
+        }
+        return produto;
+    }
+
+    @Override
+    public ProdutoModel alterar(ProdutoModel model) {
+        ProdutoModel produto = this.consultar(model.getId());
+        if (Objects.nonNull(produto)) {
+            produto.alterar(model);
         }
         return produto;
     }

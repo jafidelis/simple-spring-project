@@ -10,4 +10,5 @@ public interface ProdutoService {
     ProdutoModel cadastrar(ProdutoModel model);
     List<ProdutoModel> mostrarTudo();
     ProdutoModel remover(Long id);
+    ProdutoModel alterar(ProdutoModel model);
 }

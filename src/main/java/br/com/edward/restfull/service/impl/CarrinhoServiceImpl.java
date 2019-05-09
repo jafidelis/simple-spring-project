@@ -21,8 +21,10 @@ public class CarrinhoServiceImpl implements CarrinhoService {
     
     @Override
     public CarrinhoModel adicionar(Integer qtd, Long idProduto) {
+        
         ProdutoModel produto = produtoService.consultar(idProduto);
         if (Objects.nonNull(produto)) {
+            produto.removerEstoque(qtd);
             carrinho.addItem(qtd, produto);
         }
         return carrinho;
@@ -35,7 +37,10 @@ public class CarrinhoServiceImpl implements CarrinhoService {
 
     @Override
     public ItemCarrinhoModel remover(Long idItemCarrinho) {
-        return carrinho.removerItem(idItemCarrinho);
+
+        ItemCarrinhoModel item = carrinho.removerItem(idItemCarrinho);
+        item.getProduto().addEstoque(item.getQtd());
+        return item;
     }
 
 }

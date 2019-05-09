@@ -16,10 +16,19 @@ public class PessoaServiceImpl implements PessoaService {
     
     @Override
     public PessoaModel post(PessoaModel model) {
-        lista.add(model);
-        return model;
+        PessoaModel pessoa = this.consultar(model.getId());
+        if (Objects.isNull(pessoa)) {
+            lista.add(model);
+            return model;
+        }
+        throw new RuntimeException("Pessoa já existe");
     }
 
+    @Override
+    public PessoaModel consultar(Long idPessoa) {
+        return lista.stream().filter(item -> idPessoa.equals(item.getId())).findAny().orElse(null);
+    }
+    
     @Override
     public List<PessoaModel> mostrarTudo() {
         return lista;
@@ -27,7 +36,7 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Override
     public PessoaModel remover(Long id) {
-        PessoaModel pessoaRemover = lista.stream().filter(item -> id.equals(item.getId())).findAny().orElse(null);
+        PessoaModel pessoaRemover = this.consultar(id);
         if (Objects.nonNull(pessoaRemover)) {
             lista.remove(pessoaRemover);
         }
