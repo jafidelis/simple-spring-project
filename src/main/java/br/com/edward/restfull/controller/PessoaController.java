@@ -1,9 +1,8 @@
 package br.com.edward.restfull.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,12 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.edward.restfull.model.FarmaceuticoModel;
 import br.com.edward.restfull.model.FornecedorModel;
 import br.com.edward.restfull.model.PessoaModel;
+import br.com.edward.restfull.service.PessoaService;
 
 @RestController
 @RequestMapping("/pessoa")
 public class PessoaController {
 
-    private static List<PessoaModel> lista = new ArrayList<>();
+    @Autowired
+    private PessoaService pessoaService;
     
     @GetMapping("/param")
     public PessoaModel param(@RequestParam String nome) {
@@ -35,22 +36,16 @@ public class PessoaController {
 
     @PostMapping("/post")
     public PessoaModel post(@RequestBody PessoaModel model) {
-        lista.add(model);
-        return model;
+       return pessoaService.post(model);
     }
     
     @GetMapping("/mostrar-tudo")
     public List<PessoaModel> mostrarTudo() {
-        return lista;
+        return pessoaService.mostrarTudo();
     }
     
     @DeleteMapping("/remover")
     public PessoaModel remover(@RequestParam Long id) {
-        
-        PessoaModel pessoaRemover = lista.stream().filter(item -> id.equals(item.getId())).findAny().orElse(null);
-        if (Objects.nonNull(pessoaRemover)) {
-            lista.remove(pessoaRemover);
-        }
-        return pessoaRemover;
+        return pessoaService.remover(id);
     }
 }
