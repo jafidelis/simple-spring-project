@@ -1,45 +1,22 @@
 package br.com.edward.restfull.model;
 
-import java.util.Objects;
+import br.com.edward.restfull.domain.ItemCarrinho;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+@NoArgsConstructor
+@Getter
 public class ItemCarrinhoModel {
-
-    private static Long cont = 0L;
     
-    private final Long id;
+    private Long id;
     private Integer qtd;
-    private ProdutoModel produto;
-
-    public ItemCarrinhoModel() {
-        this.id = ++cont;
-    }
+    private String produto;
+    private Double total;
     
-    public ItemCarrinhoModel(Integer qtd, ProdutoModel produto) {
-        this();
-        this.qtd = qtd;
-        this.produto = produto;
-    }
-
-    public Long getId() {
-        return id;
-    }
-    
-    public Integer getQtd() {
-        return qtd;
-    }
-
-    public String getNomeProduto() {
-        return Objects.nonNull(this.produto) ? this.produto.getNome() : " - ";
-    }
-    
-    @JsonIgnore
-    public ProdutoModel getProduto() {
-        return produto;
-    }
-
-    public Double getTotal() {
-        return this.qtd * this.produto.getPreco();
+    public ItemCarrinhoModel(ItemCarrinho domain) {
+        this.id = domain.getId();
+        this.qtd = domain.getQtd();
+        this.produto = domain.getProduto().getNome();
+        this.total = domain.getTotal();
     }
 }
