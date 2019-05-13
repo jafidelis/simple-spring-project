@@ -7,7 +7,7 @@
 	<groupId>br.com.edward</groupId>
 	<artifactId>projeto-spring-mvc</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	
+
 	<name>projeto-spring-mvc</name>
 	<description>Exemplo Simples de Projeto Spring RESTful</description>
 
@@ -27,26 +27,26 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
+
 		<!-- Lombok -->
 		<dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        
-        <!-- JPA -->
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- JPA -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		
+
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-java8</artifactId>
 		</dependency>
-		
+
 		<!-- H2 Database -->
 		<dependency>
 			<groupId>com.h2database</groupId>
