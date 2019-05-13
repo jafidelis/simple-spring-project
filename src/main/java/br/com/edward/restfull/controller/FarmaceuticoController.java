@@ -1,6 +1,7 @@
 package br.com.edward.restfull.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,11 +22,11 @@ public class FarmaceuticoController {
     
     @PostMapping("/cadastrar")
     public FarmaceuticoModel cadastrar(@RequestBody FarmaceuticoModel model) {
-        return farmaceuticoService.cadastrar(model);
+        return new FarmaceuticoModel(farmaceuticoService.cadastrar(model));
     }
     
     @GetMapping("/mostrar-tudo")
     public List<FarmaceuticoModel> mostrarTudo() {
-        return farmaceuticoService.mostrarTudo();
+        return farmaceuticoService.mostrarTudo().stream().map(FarmaceuticoModel::new).collect(Collectors.toList());
     }
 }

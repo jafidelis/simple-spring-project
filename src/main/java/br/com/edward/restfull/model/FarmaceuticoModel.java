@@ -1,18 +1,19 @@
 package br.com.edward.restfull.model;
 
-public class FarmaceuticoModel extends PessoaFisicaModel {
+import br.com.edward.restfull.domain.Farmaceutico;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@Getter
+public class FarmaceuticoModel extends PessoaModel {
+
+    private Boolean usaOculos;
     private String crf;
-
-    public FarmaceuticoModel() {
-        super();
-    }
     
-    public FarmaceuticoModel(String nome) {
-        super(nome);
-    }
-    
-    public String getCrf() {
-        return crf;
+    public FarmaceuticoModel(Farmaceutico domain) {
+        super(domain);
+        this.usaOculos = domain.getUsaOculos();
+        this.crf = domain.getCrf();
     }
 }

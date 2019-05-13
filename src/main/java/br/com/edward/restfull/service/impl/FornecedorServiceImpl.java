@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.edward.restfull.domain.Fornecedor;
 import br.com.edward.restfull.model.FornecedorModel;
 import br.com.edward.restfull.service.FornecedorService;
 import br.com.edward.restfull.service.PessoaService;
@@ -17,14 +18,14 @@ public class FornecedorServiceImpl implements FornecedorService {
     private PessoaService pessoaService;
     
     @Override
-    public FornecedorModel cadastrar(FornecedorModel model) {
-        return (FornecedorModel)pessoaService.post(model);
+    public Fornecedor cadastrar(FornecedorModel model) {
+        return (Fornecedor)pessoaService.post(new Fornecedor(model));
     }
 
     @Override
-    public List<FornecedorModel> mostrarTudo() {
-        return pessoaService.mostrarTudo().stream().filter(x -> x instanceof FornecedorModel)
-                .map(f -> (FornecedorModel)f).collect(Collectors.toList());
+    public List<Fornecedor> mostrarTudo() {
+        return pessoaService.mostrarTudo().stream().filter(x -> x instanceof Fornecedor)
+                .map(f -> (Fornecedor)f).collect(Collectors.toList());
     }
 
 }
