@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.edward.restfull.domain.Produto;
 import br.com.edward.restfull.model.ProdutoModel;
+import br.com.edward.restfull.model.TotalProdutoModel;
 import br.com.edward.restfull.repository.ProdutoRepository;
 import br.com.edward.restfull.service.ProdutoService;
 
@@ -52,5 +53,15 @@ public class ProdutoServiceImpl implements ProdutoService {
             return produtoRepository.save(produto);
         }
         return produto;
+    }
+
+    @Override
+    public TotalProdutoModel getTotal() {
+        
+        List<Produto> lista = this.produtoRepository.findAll();
+        Double valorMedio = lista.stream().mapToDouble(Produto::getPreco).average().orElse(0D);
+        Integer totalEstoque = lista.stream().mapToInt(Produto::getQtd).sum();
+        Integer qtdProdutos = lista.size();
+        return new TotalProdutoModel(valorMedio, totalEstoque, qtdProdutos);
     }
 }

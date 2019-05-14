@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.edward.restfull.model.ProdutoModel;
+import br.com.edward.restfull.model.TotalProdutoModel;
 import br.com.edward.restfull.service.ProdutoService;
 
 @RestController
@@ -41,5 +42,10 @@ public class ProdutoController {
     @DeleteMapping("/remover")
     public ProdutoModel remover(@RequestParam Long id) {
         return new ProdutoModel(produtoService.remover(id));
+    }
+    
+    @GetMapping("/get-total")
+    public TotalProdutoModel getTotal() {
+        return produtoService.getTotal();
     }
 }

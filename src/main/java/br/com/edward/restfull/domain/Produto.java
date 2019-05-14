@@ -1,10 +1,14 @@
 package br.com.edward.restfull.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -34,6 +38,11 @@ public class Produto {
     @NotNull
     @Column(name="qtd")
     private Integer qtd;
+    
+//    @NotNull
+//    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "fornecedor_id")
+//    private Fornecedor fornecedor;
     
     public Produto(ProdutoModel model) {
         this();
