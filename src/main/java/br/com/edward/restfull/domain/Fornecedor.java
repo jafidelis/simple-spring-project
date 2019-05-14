@@ -2,10 +2,16 @@ package br.com.edward.restfull.domain;
 
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import br.com.edward.restfull.model.FornecedorModel;
 import lombok.Getter;
 
 @Getter
+
+@Entity
+@Table(name="fornecedor")
 public class Fornecedor extends Pessoa {
 
     private String representacao;

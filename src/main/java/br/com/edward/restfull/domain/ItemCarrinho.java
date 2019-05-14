@@ -10,6 +10,7 @@ public class ItemCarrinho {
     private final Long id;
     private Integer qtd;
     private Produto produto;
+    private Carrinho carrinho;
 
     public ItemCarrinho() {
         this.id = ++cont;

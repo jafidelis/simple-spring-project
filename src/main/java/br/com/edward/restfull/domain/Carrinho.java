@@ -4,12 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+
 import lombok.Getter;
 
 @Getter
 public class Carrinho {
 
-    private final List<ItemCarrinho> itens;
+    @OneToMany(mappedBy = "carrinho", targetEntity = ItemCarrinho.class, cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    private List<ItemCarrinho> itens;
     
     public Carrinho() {
         this.itens = new ArrayList<>();

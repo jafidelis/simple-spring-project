@@ -2,10 +2,16 @@ package br.com.edward.restfull.domain;
 
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import br.com.edward.restfull.model.FarmaceuticoModel;
 import lombok.Getter;
 
 @Getter
+
+@Entity
+@Table(name="farmaceutico")
 public class Farmaceutico extends Pessoa {
 
     private String crf;

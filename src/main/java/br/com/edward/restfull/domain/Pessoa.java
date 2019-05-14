@@ -2,15 +2,28 @@ package br.com.edward.restfull.domain;
 
 import java.time.ZonedDateTime;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
 import br.com.edward.restfull.model.PessoaModel;
 import lombok.Getter;
 
 @Getter
+
+@Entity
+@Table(name="pessoa")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Pessoa {
 
-    private static Long cont = 0L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     
-    private final Long id;
     private ZonedDateTime dataCriacao;
     private String nome;
     private Integer idade;
@@ -18,7 +31,6 @@ public abstract class Pessoa {
     private String documento;
 
     public Pessoa() {
-        this.id = ++cont;
         this.dataCriacao = ZonedDateTime.now();
     }
 

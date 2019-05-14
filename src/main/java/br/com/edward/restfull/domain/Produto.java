@@ -39,10 +39,10 @@ public class Produto {
     @Column(name="qtd")
     private Integer qtd;
     
-//    @NotNull
-//    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "fornecedor_id")
-//    private Fornecedor fornecedor;
+    @NotNull
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "fornecedor_id")
+    private Fornecedor fornecedor;
     
     public Produto(ProdutoModel model) {
         this();
