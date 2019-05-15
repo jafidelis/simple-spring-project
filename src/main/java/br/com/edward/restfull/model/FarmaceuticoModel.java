@@ -1,6 +1,7 @@
 package br.com.edward.restfull.model;
 
 import br.com.edward.restfull.domain.Farmaceutico;
+import br.com.edward.restfull.enuns.EnumTipoOculos;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -8,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Getter
 public class FarmaceuticoModel extends PessoaModel {
 
-    private Boolean usaOculos;
+    private EnumTipoOculos usaOculos;
     private String crf;
     
     public FarmaceuticoModel(Farmaceutico domain) {

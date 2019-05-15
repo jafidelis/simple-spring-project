@@ -1,5 +1,9 @@
 package br.com.edward.restfull.model;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 import br.com.edward.restfull.domain.Produto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,9 +13,18 @@ import lombok.NoArgsConstructor;
 public class ProdutoModel {
     
     private Long id;
+    
+    @NotNull
+    @Length(min = 3, max = 128)
     private String nome;
+    
+    @NotNull
     private Double preco;
+    
+    @NotNull
     private Integer qtd;
+    
+    @NotNull
     private FornecedorModel fornecedor;
     
     public ProdutoModel(Produto domain) {

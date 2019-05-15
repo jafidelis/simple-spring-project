@@ -1,9 +1,13 @@
 package br.com.edward.restfull.controller;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,13 +29,20 @@ public class ProdutoController {
     private ProdutoService produtoService;
     
     @PostMapping("/cadastrar")
-    public ProdutoModel cadastrar(@RequestBody ProdutoModel model) {
-        return new ProdutoModel(produtoService.cadastrar(model));
+    public ProdutoModel cadastrar(@Valid @RequestBody ProdutoModel model, BindingResult bindingResult) {
+        
+        if (!bindingResult.hasErrors() && Objects.nonNull(model.getFornecedor().getId())) {
+            return new ProdutoModel(produtoService.cadastrar(model));
+        }
+        throw new RuntimeException("Model inválida");
     }
     
     @PutMapping("/alterar")
-    public ProdutoModel alterar(@RequestBody ProdutoModel model) {
-        return new ProdutoModel(produtoService.alterar(model));
+    public ProdutoModel alterar(@Valid @RequestBody ProdutoModel model, BindingResult bindingResult) {
+        if (!bindingResult.hasErrors() && Objects.nonNull(model.getId())) {
+            return new ProdutoModel(produtoService.alterar(model));
+        }
+        throw new RuntimeException("Model inválida");
     }
     
     @GetMapping("/mostrar-tudo")

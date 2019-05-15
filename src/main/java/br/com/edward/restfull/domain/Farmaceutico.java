@@ -4,9 +4,12 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import br.com.edward.restfull.enuns.EnumTipoOculos;
 import br.com.edward.restfull.model.FarmaceuticoModel;
 import lombok.Getter;
 
@@ -21,8 +24,9 @@ public class Farmaceutico extends Pessoa {
     private String crf;
     
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(name="usa_oculos")
-    private Boolean usaOculos;
+    private EnumTipoOculos usaOculos;
 
     public Farmaceutico() {
         super();
