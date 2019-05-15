@@ -2,15 +2,18 @@ package br.com.edward.restfull.service.impl;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.edward.restfull.domain.Fornecedor;
 import br.com.edward.restfull.domain.Produto;
 import br.com.edward.restfull.model.ProdutoModel;
 import br.com.edward.restfull.model.TotalProdutoModel;
 import br.com.edward.restfull.repository.ProdutoRepository;
+import br.com.edward.restfull.service.FornecedorService;
 import br.com.edward.restfull.service.ProdutoService;
 
 @Transactional
@@ -20,6 +23,9 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Autowired
     private ProdutoRepository produtoRepository;
     
+    @Autowired
+    private FornecedorService fornecedorService;
+    
     @Override
     public Produto consultar(Long idProduto) {
         return produtoRepository.findById(idProduto).orElse(null);
@@ -28,7 +34,11 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Override
     public Produto cadastrar(ProdutoModel model) {
         
-        return produtoRepository.save(new Produto(model));
+        Optional<Fornecedor> fornecedor = fornecedorService.findById(model.getFornecedor().getId());
+        if (fornecedor.isPresent()) {
+            return produtoRepository.save(new Produto(model, fornecedor.get()));
+        }
+        throw new RuntimeException("Fornecedor nao encontrado");
     }
 
     @Override

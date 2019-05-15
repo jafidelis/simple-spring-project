@@ -44,11 +44,12 @@ public class Produto {
     @JoinColumn(name = "fornecedor_id")
     private Fornecedor fornecedor;
     
-    public Produto(ProdutoModel model) {
+    public Produto(ProdutoModel model, Fornecedor fornecedor) {
         this();
         this.nome = model.getNome();
         this.preco = model.getPreco();
         this.qtd = model.getQtd();
+        this.fornecedor = fornecedor;
     }
 
     public void addEstoque(Integer qtd) {

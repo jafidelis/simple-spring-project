@@ -12,11 +12,13 @@ public class ProdutoModel {
     private String nome;
     private Double preco;
     private Integer qtd;
+    private FornecedorModel fornecedor;
     
     public ProdutoModel(Produto domain) {
         this.id = domain.getId();
         this.nome = domain.getNome();
         this.preco = domain.getPreco();
         this.qtd = domain.getQtd();
+        this.fornecedor = new FornecedorModel(domain.getFornecedor());
     }
 }

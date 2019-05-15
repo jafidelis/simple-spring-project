@@ -5,14 +5,26 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.Getter;
 
 @Getter
+
+@Entity
+@Table(name = "carrinho")
 public class Carrinho {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
     @OneToMany(mappedBy = "carrinho", targetEntity = ItemCarrinho.class, cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     private List<ItemCarrinho> itens;
     
@@ -24,8 +36,8 @@ public class Carrinho {
         return this.itens.stream().mapToDouble(ItemCarrinho::getTotal).sum();
     }
     
-    public void addItem(Integer qtd, Produto produto) {
-        this.itens.add(new ItemCarrinho(qtd, produto));
+    public void addItem(ItemCarrinho item) {
+        this.itens.add(item);
     }
     
     public ItemCarrinho removerItem(Long id) {
