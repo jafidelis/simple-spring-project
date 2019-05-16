@@ -1,5 +1,8 @@
 package br.com.edward.restfull.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,9 +27,19 @@ public class CarrinhoController {
        return new CarrinhoModel(carrinhoService.adicionar(qtd, id));
     }
     
-    @GetMapping("/mostrar-tudo")
-    public CarrinhoModel mostrarTudo() {
-        return new CarrinhoModel(carrinhoService.mostrarTudo());
+    @GetMapping("/mostrar-abertos")
+    public List<CarrinhoModel> mostrarAbertos() {
+        return carrinhoService.mostrarAbertos().stream().map(CarrinhoModel::new).collect(Collectors.toList());
+    }
+    
+    @GetMapping("/mostrar-fechados")
+    public List<CarrinhoModel> mostrarFechados() {
+        return carrinhoService.mostrarFechados().stream().map(CarrinhoModel::new).collect(Collectors.toList());
+    }
+    
+    @PostMapping("/finalizar")
+    public CarrinhoModel finalizar(@RequestParam Long id) {
+        return new CarrinhoModel(carrinhoService.finalizar(id));
     }
     
     @DeleteMapping("/remover")

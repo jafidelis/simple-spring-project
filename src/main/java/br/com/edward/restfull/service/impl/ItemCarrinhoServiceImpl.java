@@ -22,4 +22,11 @@ public class ItemCarrinhoServiceImpl implements ItemCarrinhoService {
         produto.removerEstoque(qtd);
         return itemCarrinhoRepository.save(new ItemCarrinho(qtd, produto, carrinho));
     }
+
+    @Override
+    public ItemCarrinho remover(ItemCarrinho item) {
+        item.getProduto().addEstoque(item.getQtd());
+        itemCarrinhoRepository.delete(item);
+        return item;
+    }
 }
