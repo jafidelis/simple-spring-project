@@ -16,7 +16,6 @@ import lombok.Getter;
 @Table(name="fornecedor")
 public class Fornecedor extends Pessoa {
 
-    @NotNull
     @Column(name="representacao", length = 128)
     private String representacao;
     

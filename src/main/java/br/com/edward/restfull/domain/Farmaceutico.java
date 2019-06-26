@@ -23,7 +23,6 @@ public class Farmaceutico extends Pessoa {
     @Column(name="crf", length = 128)
     private String crf;
     
-    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name="usa_oculos")
     private EnumTipoOculos usaOculos;

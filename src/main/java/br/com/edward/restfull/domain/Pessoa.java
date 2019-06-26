@@ -33,18 +33,22 @@ public abstract class Pessoa {
     @NotNull
     @Column(name="nome", length = 128)
     private String nome;
-    
-    @NotNull
-    @Column(name="idade")
-    private Integer idade;
-    
-    @NotNull
-    @Column(name="nacionalidade", length = 128)
-    private String nacionalidade;
-    
+
     @NotNull
     @Column(name="documento", length = 14)
     private String documento;
+    
+    @Column(name="email")
+    private String email;
+
+    @Column(name="endereco", length = 128)
+    private String endereco;
+
+    @Column(name="cidade", length = 128)
+    private String cidade;
+
+    @Column(name="estado", length = 60)
+    private String estado;
 
     public Pessoa() {
         this.dataCriacao = ZonedDateTime.now();
@@ -52,10 +56,13 @@ public abstract class Pessoa {
 
     public Pessoa(PessoaModel model) {
         this();
+        this.id = model.getId();
         this.nome = model.getNome();
-        this.idade = model.getIdade();
-        this.nacionalidade = model.getNacionalidade();
+        this.email = model.getEmail();
+        this.endereco = model.getEndereco();
         this.documento = model.getDocumento();
+        this.estado = model.getEstado();
+        this.cidade = model.getCidade();
     }
 
     public abstract Boolean getDocumentoValido();

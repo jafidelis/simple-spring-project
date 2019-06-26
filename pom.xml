@@ -47,10 +47,11 @@
 			<artifactId>hibernate-java8</artifactId>
 		</dependency>
 
-		<!-- H2 Database -->
+		<!-- Postgres -->
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.4.1212</version>
 		</dependency>
 
 		<dependency>

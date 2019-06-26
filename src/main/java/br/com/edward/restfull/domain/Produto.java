@@ -38,7 +38,11 @@ public class Produto {
     @NotNull
     @Column(name="qtd")
     private Integer qtd;
-    
+
+    @NotNull
+    @Column(name="codigo_barras")
+    private String codigoBarras;
+
     @NotNull
     @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     @JoinColumn(name = "fornecedor_id")
@@ -50,6 +54,7 @@ public class Produto {
         this.preco = model.getPreco();
         this.qtd = model.getQtd();
         this.fornecedor = fornecedor;
+        this.codigoBarras = model.getCodigoBarras();
     }
 
     public void addEstoque(Integer qtd) {

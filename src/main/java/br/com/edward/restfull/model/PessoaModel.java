@@ -1,5 +1,6 @@
 package br.com.edward.restfull.model;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
@@ -18,22 +19,27 @@ public class PessoaModel {
     @Length(min = 3, max = 128)
     private String nome;
     
-    @NotNull
-    private Integer idade;
+    private String email;
     
-    @NotNull
     @Length(min = 3, max = 128)
-    private String nacionalidade;
+    private String endereco;
     
-    @NotNull
     @Length(min = 11, max = 14)
     private String documento;
+
+    @Column(name="cidade", length = 128)
+    private String cidade;
+
+    @Column(name="estado", length = 60)
+    private String estado;
 
     public PessoaModel(Pessoa domain) {
         this.id = domain.getId();
         this.nome = domain.getNome();
-        this.idade = domain.getIdade();
-        this.nacionalidade = domain.getNacionalidade();
+        this.email = domain.getEmail();
+        this.endereco = domain.getEndereco();
         this.documento = domain.getDocumento();
+        this.estado = domain.getEstado();
+        this.cidade = domain.getCidade();
     }
 }

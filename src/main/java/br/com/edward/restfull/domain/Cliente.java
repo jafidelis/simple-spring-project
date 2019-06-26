@@ -19,10 +19,12 @@ import lombok.Getter;
 @Table(name="cliente")
 public class Cliente extends Pessoa {
 
-    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name="tipo")
     private EnumTipoCliente tipo;
+
+    @Column(name="limite")
+    private Double limite;
     
     public Cliente() {
         super();
@@ -31,6 +33,7 @@ public class Cliente extends Pessoa {
     public Cliente(ClienteModel model) {
         super(model);
         this.tipo = model.getTipo();
+        this.limite = model.getLimite();
     }
     
     @Override

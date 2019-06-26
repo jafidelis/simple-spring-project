@@ -23,6 +23,9 @@ public class ProdutoModel {
     
     @NotNull
     private Integer qtd;
+
+    @NotNull
+    private String codigoBarras;
     
     @NotNull
     private FornecedorModel fornecedor;
@@ -32,6 +35,7 @@ public class ProdutoModel {
         this.nome = domain.getNome();
         this.preco = domain.getPreco();
         this.qtd = domain.getQtd();
+        this.codigoBarras = domain.getCodigoBarras();
         this.fornecedor = new FornecedorModel(domain.getFornecedor());
     }
 }

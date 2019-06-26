@@ -11,11 +11,13 @@ import lombok.NoArgsConstructor;
 @Getter
 public class ClienteModel extends PessoaModel {
 
-    @NotNull
     private EnumTipoCliente tipo;
+
+    private Double limite;
     
     public ClienteModel(Cliente domain) {
         super(domain);
         this.tipo = domain.getTipo();
+        this.limite = domain.getLimite();
     }
 }
