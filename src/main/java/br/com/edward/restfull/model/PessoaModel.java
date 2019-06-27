@@ -27,11 +27,11 @@ public class PessoaModel {
     @Length(min = 11, max = 14)
     private String documento;
 
-    @Column(name="cidade", length = 128)
     private String cidade;
 
-    @Column(name="estado", length = 60)
     private String estado;
+
+    private String telefone;
 
     public PessoaModel(Pessoa domain) {
         this.id = domain.getId();
@@ -41,5 +41,6 @@ public class PessoaModel {
         this.documento = domain.getDocumento();
         this.estado = domain.getEstado();
         this.cidade = domain.getCidade();
+        this.telefone = domain.getTelefone();
     }
 }

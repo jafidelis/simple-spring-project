@@ -50,6 +50,9 @@ public abstract class Pessoa {
     @Column(name="estado", length = 60)
     private String estado;
 
+    @Column(name="telefone", length = 20)
+    private String telefone;
+
     public Pessoa() {
         this.dataCriacao = ZonedDateTime.now();
     }
@@ -63,6 +66,7 @@ public abstract class Pessoa {
         this.documento = model.getDocumento();
         this.estado = model.getEstado();
         this.cidade = model.getCidade();
+        this.telefone = model.getTelefone();
     }
 
     public abstract Boolean getDocumentoValido();
