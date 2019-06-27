@@ -34,7 +34,6 @@ public abstract class Pessoa {
     @Column(name="nome", length = 128)
     private String nome;
 
-    @NotNull
     @Column(name="documento", length = 14)
     private String documento;
     
