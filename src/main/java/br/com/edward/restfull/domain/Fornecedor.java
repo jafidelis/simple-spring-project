@@ -16,9 +16,6 @@ import lombok.Getter;
 @Table(name="fornecedor")
 public class Fornecedor extends Pessoa {
 
-    @Column(name="representacao", length = 128)
-    private String representacao;
-    
     @NotNull
     @Column(name="razao_social", length = 128)
     private String razaoSocial;
@@ -29,7 +26,6 @@ public class Fornecedor extends Pessoa {
 
     public Fornecedor(FornecedorModel model) {
         super(model);
-        this.representacao = model.getRepresentacao();
         this.razaoSocial = model.getRazaoSocial();
     }
 

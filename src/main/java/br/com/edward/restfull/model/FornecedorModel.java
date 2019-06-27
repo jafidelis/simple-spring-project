@@ -14,6 +14,5 @@ public class FornecedorModel extends PessoaModel {
     public FornecedorModel(Fornecedor domain) {
         super(domain);
         this.razaoSocial = domain.getRazaoSocial();
-        this.representacao = domain.getRepresentacao();
     }
 }
