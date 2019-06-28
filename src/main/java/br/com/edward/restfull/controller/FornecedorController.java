@@ -51,4 +51,9 @@ public class FornecedorController {
     public void delete(@PathVariable final Long id) {
         fornecedorRepository.deleteById(id);
     }
+
+    @GetMapping("/busca-por-nome/{nome}")
+    public List<FornecedorModel> buscaPorNomeOuId(@PathVariable final String nome) {
+        return fornecedorRepository.findByNome(nome).stream().map(FornecedorModel::new).collect(Collectors.toList());
+    }
 }

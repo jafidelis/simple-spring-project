@@ -4,18 +4,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
+import br.com.edward.restfull.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.edward.restfull.model.ProdutoModel;
 import br.com.edward.restfull.model.TotalProdutoModel;
@@ -27,6 +22,9 @@ public class ProdutoController {
 
     @Autowired
     private ProdutoService produtoService;
+
+    @Autowired
+    private ProdutoRepository produtoRepository;
     
     @PostMapping("/cadastrar")
     public ProdutoModel cadastrar(@Valid @RequestBody ProdutoModel model, BindingResult bindingResult) {
@@ -50,13 +48,18 @@ public class ProdutoController {
         return produtoService.mostrarTudo().stream().map(ProdutoModel::new).collect(Collectors.toList());
     }
     
-    @DeleteMapping("/remover")
-    public ProdutoModel remover(@RequestParam Long id) {
+    @DeleteMapping("{id}")
+    public ProdutoModel delete(@PathVariable final Long id) {
         return new ProdutoModel(produtoService.remover(id));
     }
     
     @GetMapping("/get-total")
     public TotalProdutoModel getTotal() {
         return produtoService.getTotal();
+    }
+
+    @GetMapping("{id}")
+    public ProdutoModel get(@PathVariable final Long id) {
+        return  produtoRepository.findById(id).map(ProdutoModel::new).orElseThrow(EntityNotFoundException::new);
     }
 }
