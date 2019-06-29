@@ -50,4 +50,8 @@ public class ItemCarrinho {
     public Double getTotal() {
         return this.qtd * this.produto.getPreco();
     }
+
+	public void aumentarQtd(int qtd) {
+		this.qtd += qtd;
+	}
 }
